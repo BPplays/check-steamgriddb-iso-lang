@@ -69,7 +69,7 @@ api_key = key
 if len(iso_languages) != 184:
 	print("err iso_languages")
 	print(len(iso_languages))
-	sys.exit(1D)
+	sys.exit(1)
 
 iso_languages_matched = []
 non_iso_languages = []
