@@ -132,9 +132,10 @@ async def main():
 
 		
 		if time.time() - start_time >= REQUESTS_INTERVAL:
-			print(f"Requests per second: {requests_count / REQUESTS_INTERVAL}")
+			end_time = time.time()
+			print(f"Requests per second: {requests_count / (end_time - start_time)}")
 			requests_count = 0
-			start_time = time.time()
+			start_time = end_time
  
 asyncio.run(main())
 	
