@@ -71,8 +71,12 @@ while len(iso_languages_matched) < 184:
 	
 		if to_disp_full < 0:
 			to_disp_full = 100
+			print 
+			print ("=========")
 			print("ISO Languages Matched:", iso_languages_matched)
 			print("Non-ISO Languages:", non_iso_languages)
+			print ("=========")
+			print 
 
 	game_id -= 1
  
