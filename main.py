@@ -128,14 +128,15 @@ async def main():
 			to_disp_full = 50
 			print_lang()
 		requests_count += len(tasks)
-		total_reqs += len(tasks)
 
 		
 		if time.time() - start_time >= REQUESTS_INTERVAL:
 			end_time = time.time()
 			print(f"Requests per second: {requests_count / (end_time - start_time)}")
+			total_reqs += requests_count
 			requests_count = 0
 			start_time = end_time
+			
  
 asyncio.run(main())
 	
