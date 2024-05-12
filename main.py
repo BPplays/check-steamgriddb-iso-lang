@@ -58,6 +58,7 @@ to_disp_full = 0
 while len(iso_languages_matched) < 184:
 	for type in apiopts:
 		iso_languages_matched_tmp, non_iso_languages_tmp = check_language(game_id, api_key, type)
+		to_disp_full -= 1
 
 		if (iso_languages_matched_tmp is not None) and (len(iso_languages_matched_tmp) != 0):
 			append_non_duplicates(iso_languages_matched, iso_languages_matched_tmp)
