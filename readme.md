@@ -1,1 +1,1 @@
-`change api_info.py.default` to change `api_info.py` and add your api key
+change `api_info.py.default` to change `api_info.py` and add your api key
