@@ -85,7 +85,7 @@ requests_count = 0
 REQUESTS_INTERVAL = 5
 start_time = time.time()
 
-batch_size = 80
+batch_size = 250
 async def main():
 	global game_id, to_disp_full, requests_count, start_time
 	while len(iso_languages_matched) < 184:
