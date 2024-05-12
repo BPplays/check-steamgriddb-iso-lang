@@ -53,6 +53,8 @@ if len(iso_languages) != 184:
 iso_languages_matched = []
 non_iso_languages = []
 
+to_disp_full = 0
+
 while len(iso_languages_matched) < 184:
 	for type in apiopts:
 		iso_languages_matched_tmp, non_iso_languages_tmp = check_language(game_id, api_key, type)
@@ -66,6 +68,11 @@ while len(iso_languages_matched) < 184:
 			print(non_iso_languages_tmp)
 
 	game_id -= 1
+ 
+	if to_disp_full < 0:
+		to_disp_full = 100
+		print("ISO Languages Matched:", iso_languages_matched)
+		print("Non-ISO Languages:", non_iso_languages)
 	
 	# test = game_id
 	# if test +5 >= game_id:
