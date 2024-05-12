@@ -45,8 +45,8 @@ game_id = 5361043
 # game_id = 5361
 api_key = key
 
-if len(iso_languages) < 184:
-	print("err ")
+if len(iso_languages) != 184:
+	print("err iso_languages")
 	print(len(iso_languages))
 	exit()
 
@@ -65,11 +65,11 @@ while len(iso_languages_matched) < 184:
 			append_non_duplicates(non_iso_languages, non_iso_languages_tmp)
 			print(non_iso_languages_tmp)
 
-	game_id += 1
+	game_id -= 1
 	
-	test = game_id
-	if test +5 >= game_id:
-		break
+	# test = game_id
+	# if test +5 >= game_id:
+	# 	break
 	
 	
  
