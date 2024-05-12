@@ -22,6 +22,7 @@ def print_lang():
 	print("Non-ISO Languages:", non_iso_languages)
 	print ("=========")
 	print ()
+	print("total reqs:", total_reqs)
 
 
 def signal_handler(sig, frame):
@@ -85,9 +86,11 @@ requests_count = 0
 REQUESTS_INTERVAL = 5
 start_time = time.time()
 
+total_reqs = 0
+
 batch_size = 250
 async def main():
-	global game_id, to_disp_full, requests_count, start_time
+	global game_id, to_disp_full, requests_count, start_time, total_reqs
 	while len(iso_languages_matched) < 184:
 		tasks = []
 		
@@ -116,6 +119,7 @@ async def main():
 			to_disp_full = 50
 			print_lang()
 		requests_count += len(tasks)
+		total_reqs += len(tasks)
 
 		
 		if time.time() - start_time >= REQUESTS_INTERVAL:
