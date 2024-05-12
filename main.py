@@ -40,26 +40,35 @@ def is_valid_language_code(input_code):
 			return True
 	return False
 
-async def check_language(game_id, api_key, type):
-	url = f'https://www.steamgriddb.com/api/v2/{type}/game/{game_id}'
+async def check_language(game_idl, api_key, type):
+	global game_id
+	url = f'https://www.steamgriddb.com/api/v2/{type}/game/{game_idl}'
 	headers = {'Authorization': f'Bearer {api_key}'}
-	async with aiohttp.ClientSession() as session:
-		async with session.get(url, headers=headers) as response:
-			if response.status == 200:
-				data = await response.json()
-				iso_languages_matched = []
-				non_iso_languages = []
+	try:
+		async with aiohttp.ClientSession() as session:
+			async with session.get(url, headers=headers) as response:
+				if response.status == 200:
+					data = await response.json()
+					iso_languages_matched = []
+					non_iso_languages = []
 
-				for game_data in data['data']:
-					language = game_data['language']
-					if is_valid_language_code(language):
-						iso_languages_matched.append(language)
-					else:
-						non_iso_languages.append(language)
+					for game_data in data['data']:
+						language = game_data['language']
+						if is_valid_language_code(language):
+							iso_languages_matched.append(language)
+						else:
+							non_iso_languages.append(language)
 
-				return iso_languages_matched, non_iso_languages
-			else:
-				return None, None
+					return iso_languages_matched, non_iso_languages
+				else:
+					return None, None
+	except aiohttp.client_exceptions.ServerDisconnectedError:
+		print(f"Server disconnected while trying to access {url}")
+		game_id += 1
+		return None, None
+	except Exception as e:
+		print(f"An error occurred: {e}")
+		return None, None
 
 
 
