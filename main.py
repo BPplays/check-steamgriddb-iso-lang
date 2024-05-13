@@ -23,6 +23,7 @@ def print_lang():
 	print ("=========")
 	print ()
 	print("total reqs:", total_reqs)
+	print("game id:", game_id)
 
 
 def signal_handler(sig, frame):
@@ -76,7 +77,10 @@ async def check_language(game_idl, api_key, type):
 apiopts = ["logos", "heroes", "grids" , "icons"]
 
 # Example game ID and API key
-game_id = 5361043
+game_id_def = 5361043
+game_id_add = -1
+
+game_id = game_id_def
 # game_id = 5361
 api_key = key
 
@@ -102,13 +106,16 @@ async def main():
 	global game_id, to_disp_full, requests_count, start_time, total_reqs
 	while len(iso_languages_matched) < 184:
 		tasks = []
+		if game_id < 0:
+			game_id = game_id_def+1
+			game_id_add = 1
 		
 		i = batch_size
 		while i > 0:
 			for type in apiopts:
 				task = asyncio.create_task(check_language(game_id, api_key, type))
 				tasks.append(task)
-			game_id -= 1
+			game_id += game_id_add
 			i -=1
 
 		results = await asyncio.gather(*tasks)
