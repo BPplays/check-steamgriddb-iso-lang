@@ -103,7 +103,7 @@ total_reqs = 0
 
 batch_size = 250
 async def main():
-	global game_id, to_disp_full, requests_count, start_time, total_reqs
+	global game_id, game_id_def, game_id_add, to_disp_full, requests_count, start_time, total_reqs
 	while len(iso_languages_matched) < 184:
 		tasks = []
 		if game_id < 0:
