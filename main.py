@@ -138,6 +138,7 @@ async def main():
 
 		
 		if time.time() - start_time >= REQUESTS_INTERVAL:
+			to_disp_full -= 1
 			end_time = time.time()
 			print(f"Requests per second: {requests_count / (end_time - start_time)}")
 			total_reqs += requests_count
